@@ -76,9 +76,11 @@ public class Cart
         // 1- Caching the discount values for each product and customer role can be used to prevent recalculating the same discount values for each product and customer role. 
         // 2- Also parallel processing can be used for calculating the discounts of each product in parallel.
 
+        Console.WriteLine($"Total Discounted Price (Before additional 10%): {totalPrice} USD");
+        Console.WriteLine($"Total Discount (Before additional 10%) : {totalPriceInitial - totalPrice} USD");
         totalPrice = totalPrice * 90 / 100; // Additional 10% discount
-
-        return totalPriceInitial - totalPrice;
+        Console.WriteLine($"Total Discount : {totalPriceInitial - totalPrice} USD");
+        return totalPrice;
     }
 }
 
@@ -118,19 +120,6 @@ public class Program
             Price = 500,
             Features = new List<string> { "Collection: Winter", "Color: Brown" }
         };
-
-        // Generate 97 more products with different features and categories(Clothing, Shoes, etc.) collections (Summer, Winter, etc.) and prices :
-        for (int i = 0; i < 97; i++)
-        {
-            var product = new Product
-            {
-                Name = $"Product {i}",
-                Category = i % 2 == 0 ? "Shoes" : "Clothing",
-                Price = i * 10,
-                Features = new List<string> { i % 2 == 0 ? "Collection: Summer" : "Collection: Winter", i % 2 == 0 ? "Color: White" : "Color: Black" }
-            };
-            cart.Products.Add(product);
-        }
 
         cart.Products.Add(product1);
         cart.Products.Add(product2);
